@@ -969,7 +969,19 @@ SpotifyWebApi.prototype = {
       .build()
       .execute(HttpManager.post, callback);
   },
-
+  
+  /**
+   * Get the current user's queue
+   * @param {requestCallback} [callback] Optional callback method to be called instead of the promise.
+   * @returns {Promise|undefined} A promise that if successful, resolves into a paging object of tracks,
+   *          otherwise an error. Not returned if a callback is given.
+   */
+  getQueue: function (callback) {
+    return WebApiRequest.builder(this.getAccessToken())
+        .withPath('/v1/me/player/queue')
+        .build()
+        .execute(HttpManager.get,callback)
+  },
 
   /** 
    * Get the Current User's Available Devices
